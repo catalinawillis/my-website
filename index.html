@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Catalina Julia Brunin Willis</title>
+<title>Catalina Willis</title>
 
 <style>
 
@@ -28,23 +28,17 @@ body {
 
 
 /* =========================================
-   POMPOM CURSOR
+   BLACK STAR CURSOR
 ========================================= */
 
 .pompom {
     position: fixed;
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
 
-    background:
-        radial-gradient(circle at 30% 30%, #ff9aa9 0 20%, transparent 21%),
-        radial-gradient(circle at 70% 30%, #ff9900 0 20%, transparent 21%),
-        radial-gradient(circle at 30% 70%, #ff9900 0 20%, transparent 21%),
-        radial-gradient(circle at 70% 70%, #ff8fa2 0 20%, transparent 21%),
-        #ff718c;
+    color: black;
+    font-size: 14px;
+    line-height: 1;
 
     transform: translate(-50%, -50%);
 }
@@ -77,67 +71,122 @@ body {
     pointer-events: none;
 }
 
+
+/* =========================================
+   OPENING NAME
+========================================= */
+
 .opening-name {
+    position: relative;
+    z-index: 10;
+
     width: 100%;
     text-align: center;
 
-    font-size: clamp(55px, 13vw, 190px);
+    font-size: clamp(45px, 10vw, 150px);
     font-weight: 700;
     letter-spacing: -0.08em;
     line-height: 0.8;
 
     white-space: nowrap;
+
+    pointer-events: none;
 }
+
+
+/* =========================================
+   BOUNCING IMAGE
+========================================= */
 
 .enter {
     position: absolute;
 
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: underline;
+    width: 40px;
+    height: 40px;
+
+    z-index: 5;
 
     cursor: none;
-
     user-select: none;
 
-    animation: dvdBounce 15s linear infinite alternate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation:
+        dvdBounce
+        15s
+        linear
+        infinite;
 }
+
+
+/* IMAGE */
+
+.enter img {
+    width: 40px;
+    height: 40px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =========================================
+   WHITE ENTER TEXT
+========================================= */
+
+.enter-text {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: white;
+
+    font-size: 6px;
+    font-weight: bold;
+
+    letter-spacing: 0;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   IMAGE BOUNCES AROUND SCREEN
+========================================= */
 
 @keyframes dvdBounce {
 
     0% {
-        left: 8%;
-        top: 12%;
+        left: 0;
+        top: 0;
     }
 
-    18% {
-        left: 75%;
-        top: 18%;
+    25% {
+        left: calc(100% - 40px);
+        top: 0;
     }
 
-    37% {
-        left: 46%;
-        top: 78%;
+    50% {
+        left: calc(100% - 40px);
+        top: calc(100% - 40px);
     }
 
-    55% {
-        left: 12%;
-        top: 61%;
-    }
-
-    72% {
-        left: 82%;
-        top: 71%;
-    }
-
-    88% {
-        left: 62%;
-        top: 34%;
+    75% {
+        left: 0;
+        top: calc(100% - 40px);
     }
 
     100% {
-        left: 18%;
-        top: 84%;
+        left: 0;
+        top: 0;
     }
 
 }
@@ -149,6 +198,7 @@ body {
 
 #site {
     opacity: 0;
+
     transition: opacity 0.8s ease;
 }
 
@@ -375,10 +425,7 @@ header {
 }
 
 
-/*
-Temporary image boxes.
-We will replace these with your actual artwork.
-*/
+/* TEMPORARY IMAGE BOXES */
 
 .placeholder {
 
@@ -440,38 +487,29 @@ footer {
     }
 
     .header-row {
-
         display: block;
     }
 
     .artist-name {
-
         margin-bottom: 20px;
-
         white-space: normal;
     }
 
     .project-menu {
-
         justify-content: flex-start;
-
         flex-wrap: wrap;
-
         gap: 10px;
     }
 
     .project-button {
-
         font-size: 14px;
     }
 
     .project-button.active {
-
         font-size: 23px;
     }
 
     .project {
-
         padding:
             25px
             15px
@@ -489,10 +527,10 @@ footer {
 
 
 <!-- =====================================
-     POMPOM
+     BLACK STAR CURSOR
 ===================================== -->
 
-<div class="pompom"></div>
+<div class="pompom">★</div>
 
 
 <!-- =====================================
@@ -502,18 +540,27 @@ footer {
 <section id="opening">
 
     <div class="opening-name">
-        CATALINA J B WILLIS
+        Catalina J B Willis
     </div>
 
-  <div class="enter" id="enter">
-    <img src="Bazaart_25E74136-38D9-4F64-8A83-D7BDC95E77E8.jpg" alt="Enter">
-</div>
-    
+
+    <div class="enter" id="enter">
+
+        <img
+            src="Bazaart_25E74136-38D9-4F64-8A83-D7BDC95E77E8.jpg"
+            alt="Enter">
+
+        <span class="enter-text">
+            ENTER
+        </span>
+
+    </div>
+
 </section>
 
 
 <!-- =====================================
-     MAIN WEBSITE
+     MAIN SITE
 ===================================== -->
 
 <div id="site">
@@ -524,14 +571,10 @@ footer {
     <div class="header-row">
 
 
-        <!-- NAME -->
-
         <div class="artist-name">
             CATALINA J B WILLIS
         </div>
 
-
-        <!-- PROJECT MENU -->
 
         <nav class="project-menu">
 
@@ -733,11 +776,14 @@ footer {
    ENTER SCREEN
 ===================================== */
 
-const opening = document.getElementById("opening");
+const opening =
+    document.getElementById("opening");
 
-const site = document.getElementById("site");
+const site =
+    document.getElementById("site");
 
-const enter = document.getElementById("enter");
+const enter =
+    document.getElementById("enter");
 
 
 enter.addEventListener("click", function() {
@@ -756,7 +802,6 @@ enter.addEventListener("click", function() {
 const buttons =
     document.querySelectorAll(".project-button");
 
-
 const projects =
     document.querySelectorAll(".project");
 
@@ -765,14 +810,9 @@ buttons.forEach(button => {
 
     button.addEventListener("click", function() {
 
-
         const projectName =
             button.dataset.project;
 
-
-        /*
-        Remove active state
-        */
 
         buttons.forEach(btn => {
 
@@ -788,10 +828,6 @@ buttons.forEach(button => {
         });
 
 
-        /*
-        Activate clicked project
-        */
-
         button.classList.add("active");
 
 
@@ -799,11 +835,6 @@ buttons.forEach(button => {
             .getElementById(projectName)
             .classList.add("active");
 
-
-        /*
-        Return to top so the
-        project title stays visible
-        */
 
         window.scrollTo({
 
@@ -819,7 +850,7 @@ buttons.forEach(button => {
 
 
 /* =====================================
-   POMPOM CURSOR
+   BLACK STAR CURSOR
 ===================================== */
 
 const pompom =
