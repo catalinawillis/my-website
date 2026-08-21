@@ -1,16 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Catalina Willis</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        background: white;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        cursor: none;
+    }
+
+    /* --------------------
+       POMPOM CURSOR
+    -------------------- */
+
+    .pompom {
+        position: fixed;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background:
+            radial-gradient(circle at 35% 30%, #ff8a9b 0 18%, transparent 19%),
+            radial-gradient(circle at 70% 30%, #ff9d00 0 18%, transparent 19%),
+            radial-gradient(circle at 30% 70%, #ff9d00 0 18%, transparent 19%),
+            radial-gradient(circle at 70% 70%, #ff8a9b 0 18%, transparent 19%),
+            #ff7190;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+    }
+
+    /* --------------------
+       HEADER
+    -------------------- */
+
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: white;
+        border-bottom: 2px solid black;
+        padding: 18px 20px 16px;
+    }
+
+    .artist-name {
+        font-size: clamp(32px, 5vw, 72px);
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+        font-weight: 700;
+        margin-bottom: 28px;
+    }
+
+    /* --------------------
+       PROJECT MENU
+    -------------------- */
+
+    .project-menu {
+        display: flex;
+        width: 100%;
+        gap: 12px;
+        align-items: flex-end;
+    }
+
+    .project-button {
+        border: 0;
+        background: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        font-family: inherit;
+        font-size: clamp(16px, 2vw, 28px);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        color: black;
+        cursor: none;
+        transition: flex 0.7s cubic-bezier(.77,0,.18,1);
+        flex: 1;
+        overflow-wrap: break-word;
+    }
+
+    .project-button:hover {
+        text-decoration: underline;
+    }
+
+    .project-button.active {
+        flex: 2.8;
+    }
+
+    /* --------------------
+       PROJECT CONTENT
+    -------------------- */
+
+    .projects {
+        width: 100%;
+    }
+
+    .project {
+        display: none;
+        padding: 35px 20px 120px;
+    }
+
+    .project.active {
+        display: block;
+        animation: appear 0.6s ease;
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .project-description {
+        max-width: 650px;
+        font-size: 20px;
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+        margin-bottom: 60px;
+    }
+
+    .project-number {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    /* --------------------
+       ARTWORK
+    -------------------- */
+
+    .artwork {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .artwork img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .artwork-placeholder {
+        width: 100%;
+        min-height: 500px;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    /* --------------------
+       FOOTER
+    -------------------- */
+
+    footer {
+        border-top: 2px solid black;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    /* --------------------
+       MOBILE
+    -------------------- */
+
+    @media (max-width: 700px) {
+
+        body {
+            cursor: auto;
+        }
+
+        .pompom {
+            display: none;
+        }
+
+        header {
+            padding: 15px;
+        }
+
+        .artist-name {
+            margin-bottom: 22px;
+        }
+
+        .project-menu {
+            display: block;
+        }
+
+        .project-button {
+            display: inline;
+            font-size: 19px;
+            margin-right: 8px;
+        }
+
+        .project-button.active {
+            flex: none;
+        }
+
+        .project {
+            padding: 25px 15px 80px;
+        }
+
+        .project-description {
+            font-size: 18px;
+        }
+
+        footer {
+            padding: 15px;
+        }
+    }
+
+</style>
 </head>
+
 
 <body>
 
-    <h1>Welcome to my website</h1>
+<div class="pompom"></div>
 
-    <p>This is my new website.</p>
+
+<header>
+
+    <div class="artist-name">
+        CATALINA WILLIS
+    </div>
+
+    <nav class="project-menu">
+
+        <button class="project-button active" data-project="confetti">
+            CONFETTI FOR A BLINDHORSE
+        </button>
+
+        <button class="project-button" data-project="sketchbooks">
+            SKETCHBOOKS
+        </button>
+
+        <button class="project-button" data-project="cat">
+            A BLACK CAT GLOWING PURPLE
+        </button>
+
+    </nav>
+
+</header>
+
+
+<main class="projects">
+
+
+    <!-- CONFETTI -->
+
+    <section class="project active" id="confetti">
+
+        <div class="project-number">
+            01
+        </div>
+
+        <div class="project-description">
+            CONFETTI FOR A BLINDHORSE
+            <br><br>
+            A description of the project goes here.
+            You can replace this text with your own writing.
+        </div>
+
+        <div class="artwork">
+
+            <div class="artwork-placeholder">
+                YOUR IMAGE 01
+            </div>
+
+            <div class="artwork-placeholder">
+                YOUR IMAGE 02
+            </div>
+
+            <div class="artwork-placeholder">
+                YOUR IMAGE 03
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKETCHBOOKS -->
+
+    <section class="project" id="sketchbooks">
+
+        <div class="project-number">
+            02
+        </div>
+
+        <div class="project-description">
+            SKETCHBOOKS
+            <br><br>
+            A description of the sketchbooks goes here.
+        </div>
+
+        <div class="artwork">
+
+            <div class="artwork-placeholder">
+                YOUR IMAGE 01
+            </div>
+
+            <div class="artwork-placeholder">
+                YOUR IMAGE 02
+            </div>
+
+            <div class="artwork-placeholder">
+                YOUR IMAGE 03
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BLACK CAT -->
+
+    <section class="project" id="cat">
+
+        <div class="project-number">
+            03
+        </div>
+
+        <div class="project-description">
+            A BLACK CAT GLOWING PURPLE
+            <br><br>
+            A description of the project goes here.
+        </div>
+
+        <div class="artwork">
+
+            <div class="artwork-placeholder">
+                YOUR IMAGE 01
+            </div>
+
+            <div class="artwork-placeholder">
+                YOUR IMAGE 02
+            </div>
+
+            <div class="artwork-placeholder">
+                YOUR IMAGE 03
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <span>CATALINA WILLIS</span>
+    <span>2026</span>
+</footer>
+
+
+<script>
+
+    /* --------------------
+       PROJECT SWITCHING
+    -------------------- */
+
+    const buttons = document.querySelectorAll(".project-button");
+    const projects = document.querySelectorAll(".project");
+
+    buttons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const projectName = button.dataset.project;
+
+            buttons.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            projects.forEach(project => {
+                project.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            document
+                .getElementById(projectName)
+                .classList.add("active");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+    });
+
+
+    /* --------------------
+       POMPOM MOUSE
+    -------------------- */
+
+    const pompom = document.querySelector(".pompom");
+
+    document.addEventListener("mousemove", (event) => {
+
+        pompom.style.left = event.clientX + "px";
+        pompom.style.top = event.clientY + "px";
+
+    });
+
+</script>
 
 </body>
 </html>
