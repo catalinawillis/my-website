@@ -113,11 +113,21 @@ body {
     align-items: center;
     justify-content: center;
 
-    animation:
-        dvdBounce
-        15s
-        linear
-        infinite;
+    .enter {
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    z-index: 5;
+
+    cursor: none;
+    user-select: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 }
 
 
@@ -162,32 +172,7 @@ body {
    IMAGE BOUNCES AROUND SCREEN
 ========================================= */
 
-@keyframes dvdBounce {
 
-    0% {
-        left: 0;
-        top: 0;
-    }
-
-    25% {
-        left: calc(100% - 40px);
-        top: 0;
-    }
-
-    50% {
-        left: calc(100% - 40px);
-        top: calc(100% - 40px);
-    }
-
-    75% {
-        left: 0;
-        top: calc(100% - 40px);
-    }
-
-    100% {
-        left: 0;
-        top: 0;
-    }
 
 }
 
@@ -867,7 +852,40 @@ document.addEventListener("mousemove", function(event) {
 
 });
 
+const bouncingImage = document.getElementById("enter");
 
+let x = 100;
+let y = 100;
+
+let speedX = 1.2;
+let speedY = 0.8;
+
+function bounceImage() {
+
+    const imageWidth = bouncingImage.offsetWidth;
+    const imageHeight = bouncingImage.offsetHeight;
+
+    const maxX = window.innerWidth - imageWidth;
+    const maxY = window.innerHeight - imageHeight;
+
+    x += speedX;
+    y += speedY;
+
+    if (x <= 0 || x >= maxX) {
+        speedX = -speedX;
+    }
+
+    if (y <= 0 || y >= maxY) {
+        speedY = -speedY;
+    }
+
+    bouncingImage.style.left = x + "px";
+    bouncingImage.style.top = y + "px";
+
+    requestAnimationFrame(bounceImage);
+}
+
+bounceImage();
 </script>
 
 
